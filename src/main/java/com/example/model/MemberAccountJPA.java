@@ -21,8 +21,6 @@ public class MemberAccountJPA {
   private String password;
   @Column(name="ADDRESS")
   private String address;
-  
-  
 
   public int getId() {
 	return id;
@@ -54,8 +52,4 @@ public class MemberAccountJPA {
   public void setAddress(String address) {
 	this.address = address;
   }
- 
-  
-  
-  
 }

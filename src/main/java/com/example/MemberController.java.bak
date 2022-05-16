@@ -1,5 +1,4 @@
-package com.example.controller;
-
+package com.example;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,12 +20,9 @@ import com.example.service.UserService;
 @Controller
 public class MemberController {
 	// Day12-Spring Boot-什麼是Spring Data JPA 
-	
-	@Autowired(required=false)
-	MemberService memberService;
-	
+//	@Autowired(required=false)
 	@Autowired
-	MemberAccount memberAccount;
+	private MemberRepository memberRepository;
 	
 	@GetMapping("/login")
     public String login(@ModelAttribute MemberAccountJPA memberAccountJPA){
@@ -35,6 +31,7 @@ public class MemberController {
     }
 	
 	@PostMapping("/doLogin")
+//	@GetMapping("/doLogin")
     public String doLogin(@ModelAttribute MemberAccountJPA memberAccountJPA){
 		System.out.println("doLogin");
 		System.out.println("Email: " + memberAccountJPA.getEmail());
@@ -44,23 +41,23 @@ public class MemberController {
         return "welcome";
     }
 	
-
-	
-
-	
-
+	@Autowired
+	MemberAccount memberAccount;
 	
 //	@Autowired
 //	UserService userService;
+	@Autowired
+//	@Autowired(required=false)
+	MemberService memberService;
 	
 	@GetMapping("/addMemberPage")
 	public String addMemberPage() {
-//		List<MemberAccountJPA> memberAccountJPA = new ArrayList<MemberAccountJPA>();
-//		memberAccountJPA = memberRepository.findAll();
-//
-//		for (int i = 0; i < memberAccountJPA.size(); i++) {
-//			System.out.println(memberAccountJPA.get(i).getId());
-//		}
+		List<MemberAccountJPA> memberAccountJPA = new ArrayList<MemberAccountJPA>();
+		memberAccountJPA = memberRepository.findAll();
+
+		for (int i = 0; i < memberAccountJPA.size(); i++) {
+			System.out.println(memberAccountJPA.get(i).getId());
+		}
 		return "addMemberPage";
 	}
 	
